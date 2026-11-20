@@ -4,14 +4,19 @@ version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
 authors = [
-    { name = "Shrey Chaturvedi", email = "shrey.chaturvedi@agcocorp.com" }
+    { name = "Shrey Chaturvedi", email = "shrey.chaturvedi@gmail.com" }
 ]
 requires-python = ">=3.14"
-dependencies = []
+dependencies= [
+    "GitPython<=3.2.1",
+    "pygithub<=2.10.0",
+    "python-dotenv<=1.2.4"
+]
 
 [project.scripts]
-pr-agent = "pr_agent.pr_agent:main"
+pr-agent = "pr_agent.main.pr_agent:main"
 
 [build-system]
 requires = ["uv_build>=0.13.9,<0.14.0"]
 build-backend = "uv_build"
+
