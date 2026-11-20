@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, computed_field
 
 class FileChange(BaseModel):
     file_name: str
@@ -13,5 +13,9 @@ class PullRequest(BaseModel):
     repo: str
     title: str
     url: str
-    changed_files: int
     files: list[FileChange]
+
+    @computed_field
+    @property
+    def changed_files(self) -> int:
+        return len(self.files)
