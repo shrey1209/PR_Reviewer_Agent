@@ -1,18 +1,10 @@
+from github.Repository import Repository
 from github import Github
-from github import Auth
-import os
+from github.PaginatedList import PaginatedList
 
 class GitRepos:
-    def get_repos(self):
-        print("Fetching Git repositories...")
-        auth = Auth.Token(os.getenv("GITHUB_TOKEN"))
-        github = Github(auth=auth)
-        print("Repositories for user:", type(github.get_user().get_repos()))
-        print("=" * 40)
-        for repo in github.get_user().get_repos():
-            pulls = repo.get_pulls(state="open")
-            print(f"Open pull requests for repository {repo.name}:")
-            for pull in pulls:
-                print(f"- {pull.title}")
-                print(f"-- {pull.number}")
-                print(f"-- URL: {pull.html_url}")
+    def __init__(self, github_client: Github):
+        self.github_client = github_client
+
+    def get_repos(self) -> PaginatedList[Repository]:
+        return self.github_client.get_user().get_repos()
