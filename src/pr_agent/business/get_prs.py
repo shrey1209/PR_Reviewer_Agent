@@ -15,7 +15,6 @@ class GitPRs:
                     repo=repo.full_name,
                     title=pull.title,
                     url=pull.html_url,
-                    changed_files=pull.changed_files,
                     files=[
                         FileChange(
                             file_name=file.filename,
