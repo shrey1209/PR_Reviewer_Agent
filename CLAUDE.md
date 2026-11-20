@@ -39,4 +39,7 @@ We don't need to rebuild all of it. We build it up in small increments the user 
 - **Framework: LangChain (and LangGraph for multi-agent work), chosen by the user.** This project is for learning LangChain specifically, so guide toward LangChain-idiomatic approaches, not raw SDK calls. Point the user to current LangChain docs, since its APIs change often.
 - **uv** for environment and dependency management (chosen by the user, 2026-11-20). The user is learning it from scratch.
 - Current milestone: **1, single-shot reviewer** (fetch a PR diff, send it to Claude, print the review).
+  - ✅ GitHub side done (2026-11-20): `utils/github_client.py` creates one PyGithub client from `GITHUB_TOKEN` (loaded by python-dotenv). `GitRepos` and `GitPRs` receive their dependencies through constructors. `GitPRs.get_prs()` yields Pydantic `PullRequest` models with `list[FileChange]` (`model.py`).
+  - Open: clear error when `GITHUB_TOKEN` is missing. Next: LangChain + Claude review of one `PullRequest`.
+  - Concepts covered so far: venv/uv, pyproject/lock, TOML sections, entry points, packages/`__init__`, env vars/.env, git secrets and history rewriting, PyGithub, Pydantic models, generators/yield/Iterator, type hints, constructors and dependency injection.
 - Update this section as milestones are reached, so later sessions know where we are.
