@@ -15,6 +15,7 @@ class GitPRs:
                     repo=repo.full_name,
                     title=pull.title,
                     url=pull.html_url,
+                    description=pull.body,
                     files=[
                         FileChange(
                             file_name=file.filename,
@@ -22,7 +23,7 @@ class GitPRs:
                             status=file.status,
                             additions=file.additions,
                             deletions=file.deletions,
-                            diff=file.patch
+                            diff=file.patch,
                         )
                         for file in pull.get_files()
                     ]
