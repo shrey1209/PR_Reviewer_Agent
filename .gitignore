@@ -12,3 +12,7 @@ wheels/
 
 # Local notes for Claude Code (not shared)
 CLAUDE.md
+
+# Local media and documents
+*.mp4
+*.docx
