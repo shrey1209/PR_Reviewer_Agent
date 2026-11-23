@@ -10,3 +10,6 @@ wheels/
 .venv
 .env
 
+# Local media and documents
+*.mp4
+*.docx

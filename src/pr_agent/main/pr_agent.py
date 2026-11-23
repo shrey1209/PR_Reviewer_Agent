@@ -12,8 +12,8 @@ def main() -> None:
     github_client = get_github_client()
     git_repos = GitRepos(github_client)
     git_prs = GitPRs(git_repos)
-    for pr in git_prs.get_prs():
-        md_file = PrMdFile(pr)
+    
+    md_file = PrMdFile(git_prs.get_prs())
 
     system_prompt = """
         Role: You are a PR agent that analyzes pull requests and provides insights based on the PR details.
@@ -47,10 +47,12 @@ def main() -> None:
             - The output should be compatible with standard markdown formatting.
             - The analysis should not include any confidential or sensitive information not present in the PR details.
     """
-
     agent = PrAgent(os.getenv("MODEL"), system_prompt)
-    response = agent.ask(md_file.write_md())
-    print(response)
+    for pr in git_prs.get_prs():
+        md_file = PrMdFile(pr)
+        response = agent.ask(md_file.write_md())
+        print(response)
+        print("=========================================================================\n")
 
 
     
