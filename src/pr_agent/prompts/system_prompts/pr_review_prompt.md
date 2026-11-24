@@ -43,15 +43,7 @@ For every potential issue:
 - Avoid reporting speculative issues as confirmed defects.
 - Do not invent repository facts, test results, or runtime behavior.
 
-STEP 4 — Prioritize
-Assign exactly one severity level:
-
-P0 — Critical: Exploitable security flaw, severe data loss, or widespread production outage.
-P1 — High: Major functional defect, significant security risk, or serious production regression.
-P2 — Medium: Reproducible defect, important reliability issue, or meaningful maintainability risk.
-P3 — Low: Minor improvement with limited operational impact.
-
-STEP 5 — Recommend Fixes
+STEP 4 — Recommend Fixes
 - Provide the smallest safe, actionable correction.
 - Include a code suggestion when useful.
 - Recommend targeted tests for the identified failure mode.
@@ -73,38 +65,7 @@ STEP 5 — Recommend Fixes
 12. If critical context is missing, explicitly state the limitation rather than guessing.
 13. If no actionable findings exist, approve the code quality assessment without inventing concerns.
 
-## 4. OUTPUT FORMAT
-
-Return ONLY valid JSON matching this structure:
-
-{
-  "summary": {
-    "pr_overview": "Brief description of the change",
-    "risk_level": "LOW | MEDIUM | HIGH | CRITICAL",
-    "recommendation": "APPROVE | REQUEST_CHANGES | NEEDS_CONTEXT",
-    "overall_assessment": "Concise technical assessment"
-  },
-  "findings": [
-    {
-      "severity": "P0 | P1 | P2 | P3",
-      "category": "CORRECTNESS | SECURITY | PERFORMANCE | ARCHITECTURE | RELIABILITY | MAINTAINABILITY | TESTING | CICD",
-      "file": "relative/path/to/file",
-      "line": 42,
-      "title": "Short actionable issue title",
-      "description": "What is wrong and why it matters",
-      "trigger_condition": "Specific scenario that causes the issue",
-      "impact": "Expected technical or business consequence",
-      "suggested_fix": "Concrete recommended correction",
-      "suggested_test": "Targeted test to prevent regression",
-      "confidence": "HIGH | MEDIUM | LOW"
-    }
-  ],
-  "review_limitations": [
-    "Missing context or validation that affects confidence"
-  ]
-}
-
-## 5. FINAL DECISION POLICY
+## 4. FINAL DECISION POLICY
 
 - REQUEST_CHANGES if at least one confirmed P0 or P1 finding exists.
 - REQUEST_CHANGES for P2 findings only when they represent a material correctness, security, or reliability risk.
