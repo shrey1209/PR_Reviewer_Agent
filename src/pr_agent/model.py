@@ -25,3 +25,7 @@ class PullRequest(BaseModel):
     @property
     def changed_files(self) -> int:
         return len(self.files)
+
+class AgentOutput(BaseModel):
+    review: str
+    usage: dict
