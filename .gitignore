@@ -8,3 +8,14 @@ wheels/
 
 # Virtual environments
 .venv
+.env
+
+# Local notes for Claude Code (not shared)
+CLAUDE.md
+
+# Local media and documents
+*.mp4
+*.docx
+
+# Saved review outputs (generated, may contain private details)
+src/pr_agent/main/review.md
