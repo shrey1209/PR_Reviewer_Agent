@@ -75,3 +75,9 @@ class OverallFinding(BaseModel):
 class AgentOutput(BaseModel):
     review: OverallFinding
     usage: dict | None = None
+
+class SavePrResult(BaseModel):
+    repository: str
+    title: str
+    pr_number: int
+    agent_output: AgentOutput
